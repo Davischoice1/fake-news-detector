@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fake News Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f8fa;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        form {
+            margin-top: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 180px;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            resize: vertical;
+        }
+        .buttons {
+            margin-top: 10px;
+            text-align: center;
+        }
+        input[type="submit"], button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .predict-btn {
+            background-color: #3498db;
+            color: white;
+        }
+        .clear-btn {
+            background-color: #e74c3c;
+            color: white;
+        }
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #eef;
+            border-left: 5px solid #3498db;
+            font-size: 18px;
+        }
+        .confidence {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <h1>📰 Fake News Detection App</h1>
+    <form method="POST">
+        <textarea name="news" placeholder="Paste or type a news article here...">{{ news }}</textarea>
+        <div class="buttons">
+            <input type="submit" value="Predict" class="predict-btn">
+            <button type="button" class="clear-btn" onclick="clearForm()">Clear</button>
+        </div>
+    </form>
+
+    {% if prediction %}
+        <div class="result">
+            <p><strong>Prediction:</strong> {{ prediction }}</p>
+            <p><span class="confidence">Confidence:</span> {{ confidence }}</p>
+        </div>
+    {% endif %}
+
+    <script>
+        function clearForm() {
+            document.querySelector("textarea").value = "";
+            window.location.href = "/";
+        }
+    </script>
+</body>
+</html>
