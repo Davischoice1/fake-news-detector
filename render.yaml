@@ -3,7 +3,7 @@ services:
     name: fake-news-flask-app
     env: python
     buildCommand: ""
-    startCommand: gunicorn app:app
+    startCommand: gunicorn app:app --workers=1 --timeout=120
     envVars:
       - key: FLASK_ENV
         value: production
